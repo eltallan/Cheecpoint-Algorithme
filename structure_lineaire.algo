@@ -1,0 +1,93 @@
+ALGORITHM cheekpointstructure_lineaire
+VAR
+
+    jeu1 : ARRAY_OF INTEGER[4];
+    jeu2 : ARRAY_OF type[5];
+
+    somme,somme2 : INTEGER :=0;
+    i,j,k,l : INTEGER;
+    distinct : BOOLEAN;
+
+    hjeu1 : HASH_TABLE<INTEGER,STRING>;
+    hjeu2 : HASH_TABLE<INTEGER,STRING>;
+
+BEGIN
+    jeu1 := {3,7,1,9};
+    jeu2 := {2,4,1,9,3};
+
+
+    // La somme de tous les éléments distincts 
+    FOR i FROM 0 TO jeu1.length-1 STEP step  DO
+        FOR j FROM 0 TO jeu2.length-1 STEP step  DO
+            IF (jeu1[i] == jeu2[j] ) THEN
+                distinct := false;
+            else 
+                distinct := true;
+            END_IF
+            
+        END_FOR
+
+        IF (distinct==true) THEN
+            somme += jeu1[i];
+                Read(somme)
+
+        END_IF
+    END_FOR
+        Write("La somme des éléments distincts sont:"somme)
+
+
+    FOR j FROM 0 TO jeu2.length-1 STEP step  DO
+        FOR i FROM 0 TO jeu2.length-1 STEP step  DO
+            IF (jeu2[i] == jeu1[j] ) THEN
+                distinct := false;
+            else 
+                distinct := true;
+            END_IF
+            
+        END_FOR
+
+        IF (distinct==true) THEN
+            somme += jeu2[i];
+                Read(somme)
+
+        END_IF
+    END_FOR
+            Write("La somme des éléments distincts sont:"somme)
+
+
+ //Somme des éléments qui se chevauchent
+    FOR k FROM 0 TO jeu1.length-1 STEP step  DO
+        FOR l FROM 0 TO jeu2.length-1 STEP step  DO
+            IF (jeu1[k] == jeu2[l] ) THEN
+                somme2 += jeu1[k];
+                    Read(somme2)
+
+            END_IF
+            
+        END_FOR
+    END_FOR
+
+
+    FOR l FROM 0 TO jeu1.length-1 STEP step  DO
+        FOR k FROM 0 TO jeu2.length-1 STEP step  DO
+            IF (jeu1[l] == jeu2[k] ) THEN
+                somme2 += jeu1[i];
+                    Read(somme2)
+
+            END_IF
+            
+        END_FOR
+    END_FOR
+    Write("La somme des éléments communs sont:"somme2)
+    
+
+    //HACHAGE
+
+    FOR i FROM 0 TO hjeu1.length-1 STEP step  DO
+        IF (hjeu1.lookup(hjeu2[i]= TRUE)) THEN
+            somme += hjeu1[i];
+        ELSE
+            set_instructions
+        END_IF
+    END_FOR
+END
